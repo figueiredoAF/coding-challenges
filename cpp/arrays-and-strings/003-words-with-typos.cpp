@@ -98,6 +98,8 @@ bool is_typo(std::string str1, std::string str2)
     if (delta == 0) return is_typo_replace(str1, str2);
     else if (delta == 1) return is_typo_remove(str1, str2);
     else if (delta == -1) return is_typo_insert(str1, str2);
+
+    return false;
 }
 
 int main(int argc, char **argv)
