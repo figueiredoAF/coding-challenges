@@ -26,6 +26,8 @@ char log_buffer[LOG_BUFFER_SIZE];
 bool is_permutation(std::string str1, std::string str2)
 {
     std::cout << "is_permutation()" << std::endl;
+    if (!str1.compare(str2)) return false; // Equal strings are not considered a permutation
+    
     std::sort(str1.begin(), str1.end());
     std::sort(str2.begin(), str2.end());
     std::cout << "is_permutation = " << str1.compare(str2) << std::endl;
