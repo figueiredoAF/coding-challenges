@@ -23,27 +23,27 @@
 static const uint LOG_BUFFER_SIZE = 512;
 char log_buffer[LOG_BUFFER_SIZE];
 
+// Temporal complexity: O(nlog(n))
+// Spacial complexity: O(n)
 bool is_permutation(std::string str1, std::string str2)
 {
-    std::cout << "is_permutation()" << std::endl;
     if (!str1.compare(str2)) return false; // Equal strings are not considered a permutation
     
     std::sort(str1.begin(), str1.end());
     std::sort(str2.begin(), str2.end());
-    std::cout << "is_permutation = " << str1.compare(str2) << std::endl;
     return !str1.compare(str2);
 }
 
+// Temporal complexity: O(n)
+// Spacial complexity: O(n)
 bool is_partial_permutation(const std::string &str1, const std::string &str2)
 {
-    std::cout << "is_partial_permutation()" << std::endl;
     if (str1[0] != str2[0]) // Compare the first characters
     {
         std::cout << "First character is different" << std::endl;
         return false;
     }
     
-    std::cout << "is_partial_permutation() - checking if is permutation" << std::endl;
     if (!is_permutation(str1, str2))
     {
         std::cout << "Strings are not a permutation" << std::endl;
@@ -51,7 +51,6 @@ bool is_partial_permutation(const std::string &str1, const std::string &str2)
     }
 
     // If word has less than 3 characters and is a permutation, it is also a partial permutation
-    std::cout << "is_partial_permutation() - checking if size is less than 3" << std::endl;
     if (str1.size() <= 3) return true;
 
     // Count how many characters were permuted
@@ -74,9 +73,14 @@ bool is_partial_permutation(const std::string &str1, const std::string &str2)
 
 int main(int argc, char **argv)
 {
-    std::string str1("you");
-    std::string str2("yuo");
-    
+    std::string str1;
+    std::string str2;
+
+    std::cout << "Enter the first string, then press enter:" << std::endl;
+    getline(std::cin, str1);
+    std::cout << "Enter the second string, then press enter:" << std::endl;
+    getline(std::cin, str2);
+
     if (is_partial_permutation(str1, str2))
     {
         memset(log_buffer, 0, LOG_BUFFER_SIZE);

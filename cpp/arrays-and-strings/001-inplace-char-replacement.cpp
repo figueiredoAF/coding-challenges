@@ -18,11 +18,12 @@ Output: "User&32is&32not&32allowed&32"
 static const uint MAX_SIZE = 128;
 char my_array[MAX_SIZE];
 
+// Temporal complexity: O(n)
+// Spacial complexity: O(1)
 void array_find_and_replace(char *str, int size, const char &search_key, const char *replace_key)
 {
     if (!str) return;
-
-    std::cout << "array_find_and_replace() - initial string = " << str << std::endl;
+    std::cout << "initial string = " << str << std::endl;
 
     int pen = 0;
     char nextChar = str[pen];
@@ -38,7 +39,6 @@ void array_find_and_replace(char *str, int size, const char &search_key, const c
             memmove(str + pen, replace_key, delta);
             //snprintf(str + pen, MAX_SIZE - pen, "&32%s", str + pen + 3);
             pen += delta;
-            std::cout << "array_find_and_replace() - new string = " << str << std::endl;
         }
         else
         {
@@ -46,6 +46,7 @@ void array_find_and_replace(char *str, int size, const char &search_key, const c
         }
         nextChar = str[pen];
     }
+    std::cout << "Final string = " << str << std::endl;
     return;    
 }
 
@@ -54,7 +55,11 @@ int main()
     const char find = ' ';
     const char replace[] = "&32";
 
+    std::string input;
+    std::cout << "Type a string and press enter:" << std::endl;
+    getline(std::cin, input);
+
     memset(my_array, 0, MAX_SIZE);
-    snprintf(my_array, MAX_SIZE, "User is not allowed ");
+    snprintf(my_array, MAX_SIZE, input.c_str());
     array_find_and_replace(my_array, strlen(my_array), find, replace);
 }

@@ -17,9 +17,11 @@
 #include <cstring>
 #include <math.h>
 
-bool is_typo_insert(std::string str1, std::string str2)
+// Temporal complexity: O(n)
+// Spacial complexity: O(1)
+bool is_typo_insert(const std::string &str1, const std::string &str2)
 {
-    std::cout << "is_typo_insert() - ?" << std::endl;
+    std::cout << "Checking for insert typo..." << std::endl;
     if ((str2.size() - str1.size()) != 1) return false;
 
     int diff = 0; // Early stop based on diff count
@@ -46,9 +48,11 @@ bool is_typo_insert(std::string str1, std::string str2)
     return (diff <= 1);
 }
 
-bool is_typo_remove(std::string str1, std::string str2)
+// Temporal complexity: O(n)
+// Spacial complexity: O(1)
+bool is_typo_remove(const std::string &str1, const std::string &str2)
 {
-    std::cout << "is_typo_remove() - ?" << std::endl;
+    std::cout << "Checking for remove typo..." << std::endl;
     if ((str1.size() - str2.size()) != 1) return false;
 
     int diff = 0; // Early stop based on diff count
@@ -56,7 +60,6 @@ bool is_typo_remove(std::string str1, std::string str2)
     int j = 0; // Index for str2
     while ((j < str2.size()) && (diff <=1))
     {
-        std::cout << "is_typo_remove(), i=" << i << ", j=" << j << std::endl;
         if ((str1[i] != str2[j]) && (diff == 0)) // First difference, it may be the char removed
         {
             diff++; // Freezes str2 index to compare with next char of str1
@@ -76,9 +79,11 @@ bool is_typo_remove(std::string str1, std::string str2)
     return (diff <= 1);
 }
 
-bool is_typo_replace(std::string str1, std::string str2)
+// Temporal complexity: O(n)
+// Spacial complexity: O(1)
+bool is_typo_replace(const std::string &str1, const std::string &str2)
 {
-    std::cout << "is_typo_replace() - ?" << std::endl;
+    std::cout << "Checking for replace typo..." << std::endl;
     if (str1.size() != str2.size()) return false;
 
     int diff = 0; // Early stop based on diff count
@@ -92,7 +97,9 @@ bool is_typo_replace(std::string str1, std::string str2)
     return (diff <= 1);
 }
 
-bool is_typo(std::string str1, std::string str2)
+// Temporal complexity: O(n)
+// Spacial complexity: O(1)
+bool is_typo(const std::string &str1, const std::string &str2)
 {
     int delta = str1.size() - str2.size();
     if (delta == 0) return is_typo_replace(str1, str2);
@@ -104,8 +111,13 @@ bool is_typo(std::string str1, std::string str2)
 
 int main(int argc, char **argv)
 {
-    std::string str1("p");
-    std::string str2("");
+    std::string str1;
+    std::string str2;
+
+    std::cout << "Enter the first string, then press enter:" << std::endl;
+    getline(std::cin, str1);
+    std::cout << "Enter the second string, then press enter:" << std::endl;
+    getline(std::cin, str2);
 
     if (is_typo(str1, str2)) std::cout << "IS TYPO!" << std::endl;
     else std::cout << "is NOT typo!" << std::endl;
