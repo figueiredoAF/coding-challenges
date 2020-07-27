@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Native Search List</string>
+    <string name="app_label">Native Search List</string>
+    <string name="empty_search_result">EMPTY SEARCH RESULT</string>
+</resources>
